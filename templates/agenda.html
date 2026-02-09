@@ -13,6 +13,7 @@
         {% for tarefa in tarefas %}
             <li>
                 {{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }}
+                <a href="{{url_for('delete', idTarefa=tarefa.id_tarefa)}}">Apagar</a>
             </li>
         {% endfor %}
     </ul>
@@ -39,4 +40,4 @@
     3XX - Sucesso, mas redirecionado
     4XX - Não entrado (Falha na REQUISIÇÃO)
     5XX - Erro do servidor (Falha na RESPOSTA)
--->
+--> 

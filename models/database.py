@@ -3,9 +3,6 @@ from sqlite3 import Connection, connect, Cursor
 from typing import Any, Optional, Self, Type
 import traceback
 
-
-from click import Option
-
 class Database:
     def __init__(self, db_name: str) -> None:
         self.connection: Connection = connect(db_name)
@@ -33,17 +30,17 @@ class Database:
     def __exit__(
             self,
             exc_type: Optional[Type[BaseException]],
-            exc_value: Optional[BaseException] 
+            exc_value: Optional[BaseException],
             tb: Optional[TracebackType]) -> None:
         
-        if exc_type is not None:
-            print('Exceção capturada no contexto:')
-            print(f'Tipo: {exc_type.__name__}')
-            print(f'Mensagem: {exc_value}')
-            print('Traceback completo:')
-            traceback.print_tb(tb)
+                if exc_type is not None:
+                    print('Exceção capturada no contexto:')
+                    print(f'Tipo: {exc_type.__name__}')
+                    print(f'Mensagem: {exc_value}')
+                    print('Traceback completo:')
+                    traceback.print_tb(tb)
 
-        self.close()
+                self.close()
 
 
 # Área de Testes
