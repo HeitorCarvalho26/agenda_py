@@ -1,14 +1,14 @@
 body{
-    background-image: url(fundo.png);
+    background-color: rgb(255, 255, 255);
 }
 * {
   text-align:center
-  color rgb(0, 0, 0);
+
 }
 p{
   font-family: verdana;
   font-size: 20px;
-
+  
 }
 
 
