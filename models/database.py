@@ -1,9 +1,27 @@
 from types import TracebackType
 from sqlite3 import Connection, connect, Cursor
 from typing import Any, Optional, Self, Type
+from dotenv import load_dotenv
 import traceback
+import os
+
+load_dotenv()
+DB_PATH = os.getenv('DATABASE', './data/tarefa.sqlite3')
+
+def init_db(db_name: str = DB_PATH):
+     with connect(db_name) as conn:
+        conn.execute(""" 
+        CREATE TABLE IF NOT EXISTS tarefas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            titulo_tarefa TEXT NOT NULL,
+            data_conclusao TEXT
+            );
+""")
 
 class Database:
+    """
+        Classe que gerencia conexões e operações com um banco de dados SQLite. Utiliza o protocolo de gerenciamento de ceontexto para garantir que a conexão seja encerrada corretamente.
+    """
     def __init__(self, db_name: str) -> None:
         self.connection: Connection = connect(db_name)
         self.cursor: Cursor = self.connection.cursor()
